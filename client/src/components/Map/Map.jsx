@@ -7,6 +7,7 @@ import MapCards from "./MapCards";
 
 import styled from "styled-components";
 import FilteredMapCards from "./FilteredMapCards";
+import SearchBar from "./SearchBar";
 
 class Map extends Component {
   constructor(props) {
@@ -75,7 +76,6 @@ class Map extends Component {
     // When a new place is selected the map will be forced to update
     this.autocomplete.addListener("place_changed", this.handleMapChange);
 
-    this.searchButton.current.addEventListener("click", this.handleMapChange);
   }
 
   handleLocationError = (browserHasGeolocation = false) => {
@@ -297,46 +297,9 @@ class Map extends Component {
             <FilteredMapCards locationsFilter={this.state.locationsFilter} />
           )}
         </div>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            padding: "5% 0 0 0",
-            width: this.state.locations.length !== 0 ? "49vw" : "100%",
-            alignItems: "center"
-          }}
-        >
-          <input
-            id="locationType"
-            style={{ width: "25%" }}
-            placeholder="What are you looking for...ex: cafe"
-            style={{
-              border: "none",
-              borderBottom: "1px solid black",
-              width: "50%",
-              marginBottom: "20px",
-              background: "transparent",
-              fontSize: "20px"
-            }}
-            onChange={this.handleInputChange}
-            value={this.state.query}
-          />
-          <input
-            id="autocomplete"
-            style={{ width: "99.6%", height: "30px" }}
-            placeholder="Enter location..."
-            style={{
-              border: "none",
-              borderBottom: "1px solid black",
-              width: "50%",
-              marginBottom: "20px",
-              background: "transparent",
-              fontSize: "20px"
-            }}
-            onFocus={this.handleFocus}
-          />
-          <Button ref={this.searchButton}>Search</Button>
 
+        <SearchBar mapChange={ this.handleMapChange } onChange={ this.handleInputChange } query={ this.state.query } onFocus={ this.onFocus } searchButton={ this.searchButton } locationLen={ this.state.locations.length }/>
+        
           <div
             id="map"
             style={{
@@ -347,7 +310,7 @@ class Map extends Component {
 
           {/* I used an empty div for the map object in the requestDetails function, this is a strange work around. If I use the actual map it reloads and we lose the position and markers. */}
           <div id="fakeMap"></div>
-        </div>
+       
       </HomeContainer>
     );
   }
