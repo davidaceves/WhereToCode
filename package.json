@@ -8,8 +8,8 @@
     "server": "nodemon backend/index.js",
     "test": " ENVIRONMENT=testing jest --watchAll --verbose"
   },
-  "repository": "https://github.com/wheretocode/WhereToCode-David.git",
-  "author": "MrT3313 <rturgeon13@gmail.com>",
+  "repository": "https://github.com/davidaceves/WhereToCode.git",
+  "author": "davidaceves <daceves.dev@gmail.com>",
   "license": "MIT",
   "dependencies": {
     "cors": "^2.8.5",
@@ -20,7 +20,7 @@
     "knex": "^0.95.0",
     "knex-cleaner": "^1.3.0",
     "morgan": "^1.9.1",
-    "pg": "^8.0.3",
+    "pg": "^8.5.1",
     "speedtest-net": "^1.5.1",
     "yarn": "^1.22.10"
   },
