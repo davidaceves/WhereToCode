@@ -3,59 +3,54 @@ import { useRef } from "react";
 
 import styled from "styled-components";
 
-
 const SearchBar = (props) => {
-    const searchButton = useRef(null)
+  const searchButton = useRef(null);
 
-    const addEventListener = () => {
-        searchButton.current.addEventListener("click", props.mapChange);
-    }
+  const addEventListener = () => {
+    searchButton.current.addEventListener("click", props.mapChange);
+  };
 
-    return (
-    <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          padding: "5% 0 0 0",
-          width: props.locationLen !== 0 ? "49vw" : "100%",
-          alignItems: "center"
-        }}
-      >
-        <input
-          id="locationType"
-          style={{ width: "25%" }}
-          placeholder="What are you looking for...ex: cafe"
-          style={{
-            border: "none",
-            borderBottom: "1px solid black",
-            width: "50%",
-            marginBottom: "20px",
-            background: "transparent",
-            fontSize: "20px"
-          }}
-          onChange={props.onChange}
-          value={props.query}
-        />
-        <input
-          id="autocomplete"
-          style={{ width: "99.6%", height: "30px" }}
-          placeholder="Enter location..."
-          style={{
-            border: "none",
-            borderBottom: "1px solid black",
-            width: "50%",
-            marginBottom: "20px",
-            background: "transparent",
-            fontSize: "20px"
-          }}
-          onFocus={props.onFocus}
-        />
-        <Button ref={ searchButton } onClick={ addEventListener }>Search</Button>
-        </div>
-)
-}
+  return (
+    <Container>
+      <InputField
+        id="locationType"
+        placeholder="What are you looking for...ex: cafe"
+        onChange={props.onChange}
+        value={props.query}
+      />
+      <InputField
+        id="autocomplete"
+        placeholder="Enter location..."
+        onFocus={props.onFocus}
+      />
+      <Button ref={searchButton} onClick={addEventListener}>
+        Search
+      </Button>
+    </Container>
+  );
+};
 
 export default SearchBar;
+
+// Not sure what I was doing here...
+// props.locationLen !== 0 ? 49vw :
+
+const Container = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const InputField = styled.input`
+  position: relative;
+  border: 1px solid black;
+  borderbottom: 1px solid black;
+  width: 50%;
+  height: 30px;
+  margin: 2%;
+  fontsize: 20px;
+`;
 
 const Button = styled.button`
   align-self: center;
