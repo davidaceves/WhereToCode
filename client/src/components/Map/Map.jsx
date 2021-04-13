@@ -60,7 +60,7 @@ class Map extends Component {
     }
 
     this.autocomplete = new google.maps.places.Autocomplete(
-      document.getElementById("autocomplete")
+      document.getElementById("locationAutoComplete")
     );
 
     // Sets autocomplete fields to be returned
@@ -238,7 +238,18 @@ class Map extends Component {
     service.textSearch(request, callback);
   };
 
-  handleFocus = (event) => event.target.select();
+  // handleFocus = () => {
+  //   const formInput = document.getElementById("locationAutoComplete");
+
+  //   let focusedElement;
+  //   formInput.addEventListener("input", function () {
+  //     if (focusedElement == this) return; // already focused, return so the user can place the cursor at a specific entry point
+  //     focusedElement = this;
+  //     setTimeout(function () {
+  //       focusedElement.select();
+  //     }, 100); //Select all text in any field in focus for easy re-entry. The delay is a bit to allow the focus to “stick” to the selection.
+  //   });
+  // };
 
   filterResults = () => {
     if (this.state.filterBool === true) {
@@ -301,7 +312,7 @@ class Map extends Component {
             mapChange={this.handleMapChange}
             onChange={this.handleInputChange}
             query={this.state.query}
-            onFocus={this.onFocus}
+            handleFocus={this.handleFocus}
             searchButton={this.searchButton}
             locationLen={this.state.locations.length}
           />
@@ -321,8 +332,9 @@ const HomeContainer = styled.div`
   display: flex;
   box-sizing: border-box;
   margin: 0 auto;
+  width: 100%
   max-width: 1400px;
-  height: 93.2vh;
+  height: 96.2vh;
 `;
 
 const MapContainer = styled.div`
@@ -333,7 +345,8 @@ const MapContainer = styled.div`
 
 const MapObject = styled.div`
   height: 82.85vh;
-  width: 100%;
+  width: 70%;
+  margin: 0 auto;
 `;
 
 const Button = styled.button`
