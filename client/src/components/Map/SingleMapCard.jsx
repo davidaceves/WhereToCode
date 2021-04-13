@@ -12,18 +12,18 @@ class SingleMapCard extends Component {
     this.state = {
       details: [],
       hours: [],
-      id: null
+      id: null,
     };
   }
 
-  requestDetails = id => {
+  requestDetails = (id) => {
     let map = new google.maps.Map(document.getElementById("fakeMap"));
 
     let service = new google.maps.places.PlacesService(map);
 
     let request = {
       placeId: id,
-      fields: ["name", "formatted_phone_number", "opening_hours"]
+      fields: ["name", "formatted_phone_number", "opening_hours"],
     };
     // Took hours out of details because I was having issues mapping over an array inside of an array ¯\_(ツ)_/¯
     service.getDetails(request, (place, status) => {
@@ -33,7 +33,7 @@ class SingleMapCard extends Component {
           hours: !place.opening_hours
             ? ["N/A"]
             : place.opening_hours.weekday_text,
-          id: id
+          id: id,
         });
       }
     });
@@ -61,7 +61,7 @@ class SingleMapCard extends Component {
               </h4>
               <p>{`${this.props.address}`}</p>
               <Popup modal trigger={<DetailButton>Details</DetailButton>}>
-                {close => (
+                {(close) => (
                   <Review
                     close={close}
                     onClick={this.requestDetails(this.props.id)}
@@ -96,9 +96,10 @@ const SingleMapCardContainer = styled.div`
   img {
     margin-right: 10px;
     margin-left: 30px;
-    height: 300px;
-    width: 225px;
+    width: 50%;
     overflow: hidden;
+    border-radius: 10px;
+    border: 1px solid black;
   }
 `;
 
