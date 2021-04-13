@@ -19,7 +19,7 @@ const FooterContainer = styled.div`
   background: #f6f6f6;
   text-align: right;
   h3 {
-    margin: 20px 40px 0px 0;
-    font-size: 20px;
+    padding-right: 11px;
+    font-size: 17px;
   }
 `;
