@@ -222,7 +222,7 @@ class Map extends Component {
                 icon: !place.photos // Loads an img if it has one, if not it uses default google icon
                   ? place.icon
                   : place.photos[0].getUrl({
-                      maxWidth: 300,
+                      maxWidth: 600,
                     }),
                 id: place.place_id,
                 address: place.formatted_address,
@@ -274,13 +274,8 @@ class Map extends Component {
   render() {
     return (
       <HomeContainer>
-        <div
-          style={{
-            width: this.state.locations.length !== 0 ? "49vw" : "0",
-            padding: "8% 0 0 0",
-            overflow: "hidden",
-            marginTop: "29px",
-          }}
+        <CardContainer
+          style={{ width: this.state.locations.length !== 0 ? "50%" : "0" }}
         >
           <div
             style={{
@@ -306,8 +301,12 @@ class Map extends Component {
           ) : (
             <FilteredMapCards locationsFilter={this.state.locationsFilter} />
           )}
-        </div>
-        <MapContainer>
+        </CardContainer>
+        <MapContainer
+          style={{
+            width: this.state.locations.length !== 0 ? "50vw" : "100vw",
+          }}
+        >
           <SearchBar
             mapChange={this.handleMapChange}
             onChange={this.handleInputChange}
@@ -332,20 +331,25 @@ const HomeContainer = styled.div`
   display: flex;
   box-sizing: border-box;
   margin: 0 auto;
-  width: 100%
+  width: 100%;
   max-width: 1400px;
   height: 96.2vh;
+`;
+
+const CardContainer = styled.div`
+  padding: "8% 0 0 0";
+  overflow: "hidden";
+  margintop: "29px";
 `;
 
 const MapContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
 `;
 
 const MapObject = styled.div`
   height: 82.85vh;
-  width: 70%;
+  width: 90%;
   margin: 0 auto;
 `;
 
